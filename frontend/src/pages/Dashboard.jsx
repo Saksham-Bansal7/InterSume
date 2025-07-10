@@ -2,13 +2,13 @@ import React from "react";
 import DashboardLayout from "../components/DashboardLayout";
 import { dashboardStyles as styles } from "../assets/dummystyle";
 import { useNavigate } from "react-router-dom";
-import { LucideFilePlus ,X ,LucideTrash2} from "lucide-react";
+import { LucideFilePlus, X, LucideTrash2 } from "lucide-react";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 import { ResumeSummaryCard } from "../components/Cards";
 import toast from "react-hot-toast";
 import moment from "moment";
-import {Modal} from "../components/Modal";
+import { Modal } from "../components/Modal";
 import CreateResumeForm from "../components/CreateResumeForm";
 
 const Dashboard = () => {
@@ -217,7 +217,7 @@ const Dashboard = () => {
                 createdAt={resume.createdAt}
                 updatedAt={resume.updatedAt}
                 onDelete={() => handleDeleteClick(resume._id)}
-                onEdit={() => navigate(`/resume/${resume._id}`)}
+                onSelect={() => navigate(`/resume/${resume._id}`)}
                 completion={resume.completion || 0}
                 isNew={moment().diff(moment(resume.createdAt), "days") < 7}
               />
@@ -227,18 +227,26 @@ const Dashboard = () => {
       </div>
 
       {/*Create Resume Modal*/}
-      <Modal isOpen={openCreateModal} onClose={() => setOpenCreateModal(false)} hideHeader maxWidth="max-w-2xl">
+      <Modal
+        isOpen={openCreateModal}
+        onClose={() => setOpenCreateModal(false)}
+        hideHeader
+        maxWidth="max-w-2xl"
+      >
         <div className="p-6">
           <div className={styles.modalHeader}>
             <h3 className={styles.modalTitle}>Create New Resume</h3>
-            <button className={`${styles.modalCloseButton} ml-12`} onClick={() => setOpenCreateModal(false)}>
-              
-            </button>
+            <button
+              className={`${styles.modalCloseButton} ml-12`}
+              onClick={() => setOpenCreateModal(false)}
+            ></button>
           </div>
-          <CreateResumeForm onSuccess={() => {
-            setOpenCreateModal(false);
-            fetchAllResumes();
-          }} />
+          <CreateResumeForm
+            onSuccess={() => {
+              setOpenCreateModal(false);
+              fetchAllResumes();
+            }}
+          />
         </div>
       </Modal>
 
@@ -258,7 +266,10 @@ const Dashboard = () => {
               <LucideTrash2 className="text-orange-600" size={24} />
             </div>
             <h3 className={styles.deleteTitle}>Delete Resume?</h3>
-            <p className={styles.deleteText}>Are you sure you want to delete this resume? This action cannot be undone.</p>
+            <p className={styles.deleteText}>
+              Are you sure you want to delete this resume? This action cannot be
+              undone.
+            </p>
           </div>
         </div>
       </Modal>
