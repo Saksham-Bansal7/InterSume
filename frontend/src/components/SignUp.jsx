@@ -1,17 +1,17 @@
-import React ,{useState , useContext} from "react";
+import React, { useState, useContext } from "react";
 import { authStyles as styles } from "../assets/dummystyle";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { validateEmail } from "../utils/helper"; 
+import { validateEmail } from "../utils/helper";
 import axios from "axios";
 import { Input } from "./Input";
 import axiosInstance from "../utils/axiosInstance";
 import { API_PATHS } from "../utils/apiPaths";
 
-const SignUp = ({setCurrentPage}) => {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const SignUp = ({ setCurrentPage }) => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const [error, setError] = useState(null);
   const { updateUser } = useContext(UserContext);
@@ -19,34 +19,50 @@ const SignUp = ({setCurrentPage}) => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    if(!fullName){
+    if (!fullName) {
       setError("Full name is required");
       return;
     }
-    if(!validateEmail(email)){
+    if (!validateEmail(email)) {
       setError("Please enter a valid email address");
       return;
     }
-    if(!password){
+    if (!password) {
       setError("Password is required");
       return;
     }
-    setError('');
+    setError("");
 
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
         email,
-        password
+        password,
       });
-      const {token } = response.data;
+      const { token } = response.data;
       if (token) {
         localStorage.setItem("token", token);
         updateUser(response.data);
         navigate("/dashboard");
-      } 
+      }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      console.error("SignUp error:", error);
+
+      if (error.response) {
+        // Server responded with error status
+        const errorMessage =
+          error.response.data?.message ||
+          `Server error: ${error.response.status}`;
+        setError(errorMessage);
+      } else if (error.request) {
+        // Request was made but no response received
+        setError(
+          "Unable to connect to server. Please check your internet connection and try again."
+        );
+      } else {
+        // Something else happened
+        setError("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
@@ -62,21 +78,21 @@ const SignUp = ({setCurrentPage}) => {
       <form onSubmit={handleSignUp} className={styles.signupForm}>
         <Input
           value={fullName}
-          onChange={({target}) => setFullName(target.value)}
+          onChange={({ target }) => setFullName(target.value)}
           label="Full Name"
           placeholder="Carl Johnson"
           type="text"
         />
         <Input
           value={email}
-          onChange={({target}) => setEmail(target.value)}
+          onChange={({ target }) => setEmail(target.value)}
           label="Email"
           placeholder="ReSume@resume.com"
           type="email"
         />
         <Input
           value={password}
-          onChange={({target}) => setPassword(target.value)}
+          onChange={({ target }) => setPassword(target.value)}
           label="Password"
           placeholder="Minimum 8 characters"
           type="password"
@@ -90,7 +106,13 @@ const SignUp = ({setCurrentPage}) => {
         {/*FOOTER*/}
         <p className={styles.switchText}>
           Already have an account?{" "}
-          <button onClick={() => setCurrentPage("login")} type="button" className={styles.signupSwitchButton}>Sign In</button>
+          <button
+            onClick={() => setCurrentPage("login")}
+            type="button"
+            className={styles.signupSwitchButton}
+          >
+            Sign In
+          </button>
         </p>
       </form>
     </div>

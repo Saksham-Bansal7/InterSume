@@ -30,6 +30,7 @@ const Login = ({ setCurrentPage }) => {
         email,
         password,
       });
+
       const { token } = response.data;
       if (token) {
         localStorage.setItem("token", token);
@@ -37,7 +38,23 @@ const Login = ({ setCurrentPage }) => {
         navigate("/dashboard");
       }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      console.error("Login error:", error);
+
+      if (error.response) {
+        // Server responded with error status
+        const errorMessage =
+          error.response.data?.message ||
+          `Server error: ${error.response.status}`;
+        setError(errorMessage);
+      } else if (error.request) {
+        // Request was made but no response received
+        setError(
+          "Unable to connect to server. Please check your internet connection and try again."
+        );
+      } else {
+        // Something else happened
+        setError("An unexpected error occurred. Please try again.");
+      }
     }
   };
 
@@ -70,8 +87,13 @@ const Login = ({ setCurrentPage }) => {
         <button type="submit" className={styles.submitButton}>
           Log in
         </button>
-        <p className={styles.switchText}>Don't have an account{' '}
-          <button type="button" className={styles.switchButton} onClick={() => setCurrentPage("signup")}>
+        <p className={styles.switchText}>
+          Don't have an account{" "}
+          <button
+            type="button"
+            className={styles.switchButton}
+            onClick={() => setCurrentPage("signup")}
+          >
             Sign Up
           </button>
         </p>

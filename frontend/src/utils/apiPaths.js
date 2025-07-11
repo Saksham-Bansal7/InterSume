@@ -2,21 +2,21 @@ export const BASE_URL = "https://intersume-backend.onrender.com";
 
 export const API_PATHS = {
   AUTH: {
-    REGISTER: "/auth/register",
-    LOGIN: "/auth/login",
-    GET_PROFILE: "/auth/profile",
+    REGISTER: "/api/auth/register",
+    LOGIN: "/api/auth/login",
+    GET_PROFILE: "/api/auth/profile",
   },
 
   RESUME: {
-    CREATE: "/resume",
-    GET_ALL: "/resume",
-    GET_BY_ID: (id) => `/resume/${id}`,
-    UPDATE: (id) => `/resume/${id}`,
-    DELETE: (id) => `/resume/${id}`,
+    CREATE: "/api/resume",
+    GET_ALL: "/api/resume",
+    GET_BY_ID: (id) => `/api/resume/${id}`,
+    UPDATE: (id) => `/api/resume/${id}`,
+    DELETE: (id) => `/api/resume/${id}`,
 
-    UPLOAD_IMAGES: (id) => `/resume/${id}/upload-images`,
+    UPLOAD_IMAGES: (id) => `/api/resume/${id}/upload-images`,
   },
   image: {
-    UPLOAD_IMAGES: "/auth/upload-image",
+    UPLOAD_IMAGES: "/api/auth/upload-image",
   },
 };
