@@ -1,6 +1,6 @@
 import Resume1 from "../assets/Resume1.png"
 import Resume2 from "../assets/Resume2.png"
-import Resume3 from "../assets/Resume3.png"
+import Resume3 from "../assets/Resume3.png" 
 
 export const resumeTemplates = [
     {

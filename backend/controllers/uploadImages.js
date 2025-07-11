@@ -16,7 +16,7 @@ export const uploadResumeImages = (req, res) => {
             .status(400)
             .json({ message: "Error uploading images", error: err.message });
         }
-        const resumeId = req.body.resumeId;
+        const resumeId = req.params.id; // Get resumeId from URL params
         const resume = await Resume.findOne({
           _id: resumeId,
           userId: req.user._id,
@@ -60,7 +60,7 @@ export const uploadResumeImages = (req, res) => {
         res.status(200).json({
           message: "Images uploaded successfully",
           thumbnailLink: resume.thumbnailLink,
-            profilePreviewUrl: resume.profileInfo.profilePreviewUrl,
+          profilePreviewUrl: resume.profileInfo.profilePreviewUrl,
         });
       }
     );
