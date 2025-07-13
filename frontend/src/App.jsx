@@ -5,6 +5,7 @@ import UserProvider from "./context/UserContext.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import EditResume from "./components/EditResume.jsx";
 import { Toaster } from "react-hot-toast";
+import PrepareWithAi from "./pages/PrepareWithAi.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/resume/:resumeId" element={<EditResume />} />
+        <Route path="/prepare-with-ai" element={<PrepareWithAi />} />
       </Routes>
 
       <Toaster

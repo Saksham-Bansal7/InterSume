@@ -10,7 +10,7 @@ export const createResume = async (req, res) => {
     const defaultResumeData = {
       template: "01",
       colorPalette: [],
-      profileInfo: {
+      profileInfo: { 
         profileImg: null,
         previewUrl: "",
         fullName: "",

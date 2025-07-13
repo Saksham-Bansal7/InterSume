@@ -94,7 +94,7 @@ const Dashboard = () => {
 
   const fetchAllResumes = async () => {
     try {
-      const respose = await axiosInstance.get(API_PATHS.RESUME.GET_ALL);
+      const respose = await axiosInstance.get(API_PATHS.RESUME.GET_ALL); 
       //Add completion percentage to each resume
       const resumesWithCompletion = respose.data.map((resume) => ({
         ...resume,
@@ -220,7 +220,7 @@ const Dashboard = () => {
                 onSelect={() => navigate(`/resume/${resume._id}`)}
                 completion={resume.completion || 0}
                 isNew={moment().diff(moment(resume.createdAt), "days") < 7}
-              />
+              /> 
             ))}
           </div>
         )}

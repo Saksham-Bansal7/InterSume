@@ -1,6 +1,13 @@
 import React from "react";
 import { landingPageStyles } from "../assets/dummystyle";
-import { LayoutTemplate, Menu, X, ArrowRight,Download,Zap } from "lucide-react";
+import {
+  LayoutTemplate,
+  Menu,
+  X,
+  ArrowRight,
+  Download,
+  Zap,
+} from "lucide-react";
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
@@ -9,7 +16,6 @@ import { Modal } from "../components/Modal";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import { ProfileInfoCard } from "../components/Cards";
-
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
@@ -48,7 +54,18 @@ const LandingPage = () => {
             )}
           </button>
 
+          {/* Prepare with Ai button for desktop navbar */}
           <div className="hidden md:flex items-center">
+            <button
+              className={`${landingPageStyles.desktopAuthButton} bg-gradient-to-r from-cyan-500 to-purple-600 text-white border-0 shadow-lg`}
+              style={{ marginRight: "1rem" }}
+              onClick={() => navigate("/prepare-with-ai")}
+            >
+              <div className={landingPageStyles.desktopAuthButtonOverlay}></div>
+              <span className={landingPageStyles.desktopAuthButtonText}>
+                Prepare with Ai
+              </span>
+            </button>
             {user ? (
               <ProfileInfoCard />
             ) : (
@@ -422,13 +439,14 @@ const LandingPage = () => {
                   bg: landingPageStyles.featureCardOrange,
                 },
               ].map((feature, index) => (
-                <div
-                  key={index}
-                  className={landingPageStyles.featureCard}
-                >
+                <div key={index} className={landingPageStyles.featureCard}>
                   <div className={landingPageStyles.featureCardHover}></div>
-                  <div className={`${landingPageStyles.featureCardContent} ${feature.bg}`}>
-                    <div className={`${landingPageStyles.featureIconContainer} ${feature.gradient}`}>
+                  <div
+                    className={`${landingPageStyles.featureCardContent} ${feature.bg}`}
+                  >
+                    <div
+                      className={`${landingPageStyles.featureIconContainer} ${feature.gradient}`}
+                    >
                       {feature.icon}
                     </div>
                     <h3 className={landingPageStyles.featureTitle}>
@@ -451,15 +469,24 @@ const LandingPage = () => {
               <div className={landingPageStyles.ctaCardBg}></div>
               <div className={landingPageStyles.ctaCardContent}>
                 <h2 className={landingPageStyles.ctaTitle}>
-                  Get Started with <span className={landingPageStyles.ctaTitleGradient}> InterSume Today!</span>
+                  Get Started with{" "}
+                  <span className={landingPageStyles.ctaTitleGradient}>
+                    {" "}
+                    InterSume Today!
+                  </span>
                 </h2>
                 <p className={landingPageStyles.ctaDescription}>
                   Join thousands of satisfied users who have crafted their
                   perfect resumes with InterSume.
                 </p>
-                <button className={landingPageStyles.ctaButton} onClick={handleCTA}>
+                <button
+                  className={landingPageStyles.ctaButton}
+                  onClick={handleCTA}
+                >
                   <div className={landingPageStyles.ctaButtonOverlay}></div>
-                  <span className={landingPageStyles.ctaButtonText}>Start Crafting</span>
+                  <span className={landingPageStyles.ctaButtonText}>
+                    Start Crafting
+                  </span>
                 </button>
               </div>
             </div>
@@ -469,19 +496,31 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className={landingPageStyles.footer}>
         <div className={landingPageStyles.footerContainer}>
-          <p className={landingPageStyles.footerText}>Crafted with <span className={landingPageStyles.footerHeart}>❤️</span> by <a href="https://github.com/Saksham-Bansal7" target="_blank" className={landingPageStyles.footerLink} >Saksham</a></p>
+          <p className={landingPageStyles.footerText}>
+            Crafted with{" "}
+            <span className={landingPageStyles.footerHeart}>❤️</span> by{" "}
+            <a
+              href="https://github.com/Saksham-Bansal7"
+              target="_blank"
+              className={landingPageStyles.footerLink}
+            >
+              Saksham
+            </a>
+          </p>
         </div>
       </footer>
 
-      {/* Auth Modal */ }
-      <Modal isOpen={openAuthModal} onClose={() => {
+      {/* Auth Modal */}
+      <Modal
+        isOpen={openAuthModal}
+        onClose={() => {
           setOpenAuthModal(false);
           setCurrentPage("login");
-        }} hideHeader>
+        }}
+        hideHeader
+      >
         <div>
-          {currentPage === "login" && (
-            <Login setCurrentPage={setCurrentPage} />
-          ) }
+          {currentPage === "login" && <Login setCurrentPage={setCurrentPage} />}
           {currentPage === "signup" && (
             <SignUp setCurrentPage={setCurrentPage} />
           )}

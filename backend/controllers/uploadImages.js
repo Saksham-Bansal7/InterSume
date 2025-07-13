@@ -13,7 +13,7 @@ export const uploadResumeImages = (req, res) => {
       async (err) => {
         if (err) {
           return res
-            .status(400)
+            .status(400) 
             .json({ message: "Error uploading images", error: err.message });
         }
         const resumeId = req.params.id; // Get resumeId from URL params

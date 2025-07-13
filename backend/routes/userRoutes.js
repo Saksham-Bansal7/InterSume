@@ -15,3 +15,4 @@ userRouter.post("/login", loginUser);
 userRouter.get("/profile", protect, getUserProfile);
 
 export default userRouter;
+ 
