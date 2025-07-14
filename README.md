@@ -2,7 +2,7 @@
 
 A comprehensive web application for building professional resumes and preparing for interviews with AI-powered personalized questions.
 
-![InterSume Banner][(https://img.shields.io/badge/InterSume-Resume%20Builder-purple?style=for-the-badge&logo=react](https://intersume-frontend.onrender.com))
+[![InterSume(Live Demo)](https://img.shields.io/badge/Live%20Demo-Visit%20Site-brightgreen?style=for-the-badge&logo=vercel)](https://intersume-frontend.onrender.com)
 
 ## ✨ Features
 
