@@ -93,6 +93,15 @@ const LandingPage = () => {
                     Welcome Back
                   </div>
                   <button
+                    className={`${landingPageStyles.mobileAuthButton} bg-gradient-to-r from-cyan-500 to-purple-600 text-white border-0 shadow-lg mb-3`}
+                    onClick={() => {
+                      navigate("/prepare-with-ai");
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    Prepare with AI
+                  </button>
+                  <button
                     className={landingPageStyles.mobileDashboardButton}
                     onClick={() => {
                       navigate("/dashboard");
@@ -103,15 +112,26 @@ const LandingPage = () => {
                   </button>
                 </div>
               ) : (
-                <button
-                  className={landingPageStyles.mobileAuthButton}
-                  onClick={() => {
-                    setOpenAuthModal(true);
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  Get Started
-                </button>
+                <>
+                  <button
+                    className={`${landingPageStyles.mobileAuthButton} bg-gradient-to-r from-cyan-500 to-purple-600 text-white border-0 shadow-lg mb-3`}
+                    onClick={() => {
+                      navigate("/prepare-with-ai");
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    Prepare with AI
+                  </button>
+                  <button
+                    className={landingPageStyles.mobileAuthButton}
+                    onClick={() => {
+                      setOpenAuthModal(true);
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    Get Started
+                  </button>
+                </>
               )}
             </div>
           </div>
