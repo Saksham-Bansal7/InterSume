@@ -64,7 +64,7 @@ const LandingPage = () => {
             >
               <div className={landingPageStyles.desktopAuthButtonOverlay}></div>
               <span className={landingPageStyles.desktopAuthButtonText}>
-                 Prepare with Ai
+                Prepare with Ai
               </span>
             </button>
             {user ? (
@@ -506,7 +506,9 @@ const LandingPage = () => {
                     <div
                       className={`${landingPageStyles.featureIconContainer} ${landingPageStyles.featureIconFuchsia}`}
                     >
-                      <span className={landingPageStyles.featureIcon}><VscRobot size={40} /></span>
+                      <span className={landingPageStyles.featureIcon}>
+                        <VscRobot size={40} />
+                      </span>
                     </div>
                     <h3 className={landingPageStyles.featureTitle}>
                       Prepare with AI
