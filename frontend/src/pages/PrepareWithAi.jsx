@@ -6,6 +6,7 @@ import {
   extractTextFromPDF,
   generateQuestionsFromResume,
 } from "../utils/groqService";
+import InterSume from "../assets/InterSume.png";
 
 const PrepareWithAi = () => {
   const [pdfFile, setPdfFile] = useState(null);
@@ -23,7 +24,7 @@ const PrepareWithAi = () => {
     setError(null);
     setLoading(true);
     setQuestions([]);
-
+ 
     try {
       // Extract text from PDF
       const resumeText = await extractTextFromPDF(file);
@@ -57,7 +58,9 @@ const PrepareWithAi = () => {
             className={`${landingPageStyles.logoContainer} cursor-pointer`}
             onClick={() => navigate("/")}
           >
-            <span className={landingPageStyles.logoText}>InterSume</span>
+            <div className="w-18 h-18 flex items-center justify-center">
+                                    <img src={InterSume} alt="InterSume Logo" className="w-18 h-18" />
+                                  </div>
           </div>
         </div>
       </header>

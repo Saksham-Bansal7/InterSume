@@ -4,7 +4,7 @@ import LandingPage from "./pages/LandingPage.jsx";
 import UserProvider from "./context/UserContext.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import EditResume from "./components/EditResume.jsx";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast"; 
 import PrepareWithAi from "./pages/PrepareWithAi.jsx";
 
 const App = () => {

@@ -16,6 +16,7 @@ import { Modal } from "../components/Modal";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
 import { ProfileInfoCard } from "../components/Cards";
+import InterSume from "../assets/InterSume.png";
 
 const LandingPage = () => {
   const { user } = useContext(UserContext);
@@ -37,10 +38,9 @@ const LandingPage = () => {
       <header className={landingPageStyles.header}>
         <div className={landingPageStyles.headerContainer}>
           <div className={landingPageStyles.logoContainer}>
-            <div className={landingPageStyles.logoIcon}>
-              <LayoutTemplate className={landingPageStyles.logoIconInner} />
-            </div>
-            <span className={landingPageStyles.logoText}>InterSume</span>
+            <div className="w-18 h-18 flex items-center justify-center">
+                        <img src={InterSume} alt="InterSume Logo" className="w-18 h-18" />
+                      </div>
           </div>
 
           <button
@@ -141,9 +141,9 @@ const LandingPage = () => {
       {/* Main content area */}
       <main className={landingPageStyles.main}>
         <section className={landingPageStyles.heroSection}>
-          <div className={landingPageStyles.heroGrid}>
+          <div className="flex flex-col lg:flex-row justify-between gap-10 lg:gap-12 items-center">
             {/*left side*/}
-            <div className={landingPageStyles.heroLeft}>
+            <div className={`${landingPageStyles.heroLeft} flex-1 lg:max-w-2xl`}>
               <div className={landingPageStyles.tagline}>
                 Professional Resume Builder
               </div>
@@ -155,7 +155,8 @@ const LandingPage = () => {
                 <span className={landingPageStyles.headingText}>Resumes</span>
               </h1>
               <p className={landingPageStyles.description}>
-                Create a resume that stands out with our easy-to-use builder.
+                Create a resume that stands out with our easy-to-use builder.<br/>
+                <span className="text-purple-500 font-semibold">New:</span> Try our <span className="font-semibold">Prepare with AI</span> feature to upload your resume and get instant, AI-generated interview questions and answers based on your skills and experience!
               </p>
               <div className={landingPageStyles.ctaButtons}>
                 <button
@@ -177,22 +178,22 @@ const LandingPage = () => {
                 >
                   View Templates
                 </button>
+                <button
+                  className={landingPageStyles.primaryButton}
+                  style={{ marginLeft: '1rem', background: 'linear-gradient(to right, #8b5cf6, #d946ef)' }}
+                  onClick={() => navigate('/prepare-with-ai')}
+                >
+                  <div className={landingPageStyles.primaryButtonOverlay}></div>
+                  <span className={landingPageStyles.primaryButtonContent}>
+                    <span role="img" aria-label="AI">🤖</span> Prepare with AI
+                  </span>
+                </button>
               </div>
 
               {/*statistics section*/}
 
               <div className={landingPageStyles.statsContainer}>
                 {[
-                  {
-                    value: "50K+",
-                    label: "Resumes Created",
-                    gradient: "from-violet-600 to-fuchsia-600",
-                  },
-                  {
-                    value: "4.9★",
-                    label: "User Rating",
-                    gradient: "from-orange-500 to-red-500",
-                  },
                   {
                     value: "5 Min",
                     label: "Build Time",
@@ -213,7 +214,7 @@ const LandingPage = () => {
               </div>
             </div>
             {/*right side*/}
-            <div className={landingPageStyles.heroIllustration}>
+            <div className={`${landingPageStyles.heroIllustration} flex-1 lg:max-w-lg`}>
               <div className={landingPageStyles.heroIllustrationBg}></div>
               <div className={landingPageStyles.heroIllustrationContainer}>
                 <svg
@@ -478,6 +479,28 @@ const LandingPage = () => {
                   </div>
                 </div>
               ))}
+              
+              {/* Centered AI Feature Card */}
+              <div className="col-span-full flex justify-center">
+                <div className={landingPageStyles.featureCard}>
+                  <div className={landingPageStyles.featureCardHover}></div>
+                  <div
+                    className={`${landingPageStyles.featureCardContent} ${landingPageStyles.featureCardFuchsia}`}
+                  >
+                    <div
+                      className={`${landingPageStyles.featureIconContainer} ${landingPageStyles.featureIconFuchsia}`}
+                    >
+                      <span className={landingPageStyles.featureIcon}>🤖</span>
+                    </div>
+                    <h3 className={landingPageStyles.featureTitle}>
+                      Prepare with AI
+                    </h3>
+                    <p className={landingPageStyles.featureDescription}>
+                      Upload your resume and get AI-generated interview questions and answers tailored to your experience.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
